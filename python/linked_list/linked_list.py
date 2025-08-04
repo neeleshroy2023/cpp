@@ -57,20 +57,22 @@ class LinkedList:
     curr = None
       
   def delete_node_at_pos(self, pos):
-    count=0;
-    prev = None;
-    curr = self.head
-    
-    if pos == 0:
-      self.head = curr
-      curr = None
-      return
-      
-    
-    while(count <= pos):
+    if self.head:
+      curr = self.head
+      if pos == 0:
+        self.head = curr.next
+        curr = None
+        return
+    prev = None
+    count = 0
+    while curr and count != pos:
       prev = curr
       curr = curr.next
       count += 1
+      
+    if curr is None:
+      return
+    
     prev.next = curr.next
     curr = None
   
