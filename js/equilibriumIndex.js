@@ -10,7 +10,7 @@ class Solution {
     findEquilibrium(arr) {
         // code here
         const n = arr.length
-        if (n < 2) return -1
+        if (n < 2) return - 1
         
         const prefix = new Array(n).fill(0)
         const suffix = new Array(n).fill(0)
