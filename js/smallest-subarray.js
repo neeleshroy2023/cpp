@@ -1,30 +1,25 @@
+/**
+ * @param {number} target
+ * @param {number[]} nums
+ * @return {number}
+ */
+var minSubArrayLen = function(target, nums) {
+    let windowStart = 0
+    let windowSum = 0
+    let minLength = Infinity
 
-
-function smallestSubarray(arr, S) {
-    if (arr.length === 0) {
-        return 0
-    }
-
-    if (arr[0] === S) {
-        return 1
-    }
-
-    let left = 0
-    let right = 1
-
-    let windowSum = arr[left]
-    let minLength = +Infinity
-
-    while (left < right) {
-        if (windowSum >= S) {
-            minLength = Math.min(right - left + 1, minLength);
-            windowSum -= arr[left]
-            left++;
-        } else {
-            windowSum += arr[right]
-            right++;
+    for (let windowEnd = 0; windowEnd < nums.length; windowEnd++) {
+        windowSum += nums[windowEnd];
+        while (windowSum >= target) {
+            minLength = Math.min(windowEnd - windowStart + 1, minLength)
+            windowSum -= nums[windowStart]
+            windowStart++
         }
     }
 
+    if (minLength === Infinity) {
+        return 0
+    }
+
     return minLength
-}
+};
