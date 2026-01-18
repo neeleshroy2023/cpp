@@ -65,6 +65,25 @@ def findMid(head):
 
     return slow.val
 
+# Find Mid using Gap
+def intersection(head1, head2):
+    ptr1, ptr2 = head1, head2
+    while ptr1 != ptr2:
+        ptr1 = head2 if ptr1 is None else ptr1.next
+        ptr2 = head1 if ptr2 is None else ptr2.next
+        
+    return ptr1.val
+
+# Find Mid using Gap
+def is_merging(head1, head2):
+    ptr1, ptr2 = head1, head2
+    while ptr1 != ptr2:
+        ptr1 = head2 if ptr1 is None else ptr1.next
+        ptr2 = head1 if ptr2 is None else ptr2.next
+    if ptr1 is None and ptr2 is None:
+        return False
+    return True
+
 # ------------------------ Drivers ------------------------------------------------------
 
 arr = [10, 20, 30, 40, 50 ,60, 70]
@@ -75,3 +94,21 @@ print("-----------")
 print(findMid(ll1))
 print("-----------")
 printLL(removeKFromEnd(ll1, 3))
+
+print("-----------")
+arr1 = [1,3,1,2,4]
+arr2 = [3]
+ll2 = build(arr1)
+ll3 = build(arr2)
+
+head1 = ll2
+ll2 = ll2.next.next.next
+head2 = ll3
+ll3.next = ll2
+
+print(intersection(head1, head2))
+print("-----------")
+
+print(is_merging(head1, head2))
+print("-----------")
+
