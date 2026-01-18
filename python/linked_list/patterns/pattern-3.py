@@ -95,6 +95,17 @@ def remove_nth_node(head, n):
     prev.next = ptr.next
     return head
 
+# Remove last k nodes
+def remove_k_nodes(head, k):
+    slow = fast = head
+    for _ in range(k):
+        fast = fast.next
+    while fast.next:
+        slow = slow.next
+        fast = fast.next
+    slow.next = None
+    return head
+
 # ------------------------ Drivers ------------------------------------------------------
 
 arr = [10, 20, 30, 40, 50 ,60, 70]
@@ -127,3 +138,6 @@ ll1 = build(arr)
 printLL(remove_nth_node(ll1, 3))
 print("-----------")
 
+ll1 = build(arr)
+printLL(remove_k_nodes(ll1, 3))
+print("-----------")
