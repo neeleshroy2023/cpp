@@ -65,7 +65,7 @@ def findMid(head):
 
     return slow.val
 
-# Find Mid using Gap
+# Find intersection
 def intersection(head1, head2):
     ptr1, ptr2 = head1, head2
     while ptr1 != ptr2:
@@ -74,7 +74,7 @@ def intersection(head1, head2):
         
     return ptr1.val
 
-# Find Mid using Gap
+# Are lists merging?
 def is_merging(head1, head2):
     ptr1, ptr2 = head1, head2
     while ptr1 != ptr2:
@@ -83,6 +83,17 @@ def is_merging(head1, head2):
     if ptr1 is None and ptr2 is None:
         return False
     return True
+
+# Remove nth node
+def remove_nth_node(head, n):
+    ptr = head
+    prev = None
+    while n > 1:
+        prev = ptr
+        ptr = ptr.next
+        n -= 1
+    prev.next = ptr.next
+    return head
 
 # ------------------------ Drivers ------------------------------------------------------
 
@@ -110,5 +121,9 @@ print(intersection(head1, head2))
 print("-----------")
 
 print(is_merging(head1, head2))
+print("-----------")
+
+ll1 = build(arr)
+printLL(remove_nth_node(ll1, 3))
 print("-----------")
 
