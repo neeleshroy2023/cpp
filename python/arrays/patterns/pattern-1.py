@@ -93,3 +93,5 @@ def remove_adjacent_duplicates(nums):
     return results
 
 print(remove_adjacent_duplicates(['a', 'a', 'b', 'b', 'b', 'c', 'c', 'd', 'e', 'f', 'g']))
+
+# Merge two sorted arrays
