@@ -61,3 +61,52 @@ def sort_zero_one(arr):
     return arr
 
 print(sort_zero_one([1,1,1,1,1,0,0,1,0,0,0,1,1,1,1,0,1]))
+
+def pair_target_sum(arr, k):
+    n = len(arr)
+    if n < 2:
+        return 0
+    arr.sort()
+    left=0
+    right = n-1
+    min_diff = 100
+    potential = [0, 0]
+    while left < right:
+        sum = arr[left] + arr[right]
+        difference = abs(k - sum)
+        if difference < min_diff:
+            min_diff = difference
+            potential[0] = arr[left]
+            potential[1] = arr[right]
+            right-=1
+        elif difference > min_diff:
+            left+=1
+        else:
+            return [arr[left], arr[right]]
+    return potential
+        
+print(pair_target_sum([10, 30, 20, 5], 34))
+
+def square_and_sort(arr):
+    n = len(arr)
+    if n < 2:
+        return 0
+    result = [0] * len(arr)
+    idx = n - 1
+    left = 0
+    right = n - 1
+    while left < right or idx >= 0:
+        left_square = arr[left] * arr[left]
+        right_square = arr[right] * arr[right]
+        if left_square > right_square:
+            result[idx] = left_square
+            left+=1
+        else:
+            result[idx] = right_square
+            right-=1
+        idx-=1
+    return result
+
+print(square_and_sort([-4, -1, 0, 3, 10]))
+
+        
