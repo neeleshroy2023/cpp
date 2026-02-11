@@ -1,3 +1,5 @@
+# Two pointers - Same Direction
+
 # Remove duplicates from sorted array
 def removeDuplicates(nums):
     length = len(nums)
