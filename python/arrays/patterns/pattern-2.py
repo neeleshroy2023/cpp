@@ -1,3 +1,4 @@
+# Two pointers opposite
 def two_sum(arr, target):
     n = len(arr)
     if n < 2:
