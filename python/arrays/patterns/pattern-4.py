@@ -63,3 +63,36 @@ print(equilibriumIndex([-7, 1, 5, 2, -4, 3, 0]))
 print(equilibriumIndex([1, 2, 0, 3]))
 print(equilibriumIndex([1, 1, 1, 1]))
         
+def difference_array(arr, queries):
+    for q in queries:
+        arr[q[0]] += q[2]
+        if q[1] + 1 < len(arr) - 1:
+            arr[q[1] + 1] -= q[2]
+    
+    ps = [0] * len(arr)
+    ps[0] = arr[0]
+    for i in range(1, len(arr)):
+        ps[i] = ps[i-1] + arr[i]
+    return ps
+
+print(difference_array([2, 3, 5, 6, 7], [[2, 4, 2], [3, 4, -1]]))
+
+def rainwaterHarvest(arr):
+    n = len(arr)
+    psMax = [0] * n
+    ssMax = [0] * n
+    
+    psMax[0] = arr[0]
+    ssMax[n-1] = arr[n-1]
+    totalWater = 0
+
+    for i in range(1, n):
+        psMax[i] = max(psMax[i-1], arr[i])
+    for i in range(n-2, -1, -1):
+        ssMax[i] = max(ssMax[i+1], arr[i])
+    
+    for i in range(0, n):
+        totalWater += min(psMax[i], ssMax[i]) - arr[i]
+    return totalWater
+
+print(rainwaterHarvest([2, 1, 5, 3, 1, 0, 4]))
